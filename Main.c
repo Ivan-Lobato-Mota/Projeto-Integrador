@@ -20,6 +20,7 @@ void ExibirBarra(char* nome, int valor) {
 
 // Função do Menu de Status da Torre
 void MenuTorre(int* TorreAlt, int* TorreEst, int* TorreOrn) {
+    system("clear");
     printf("\n================ ESTADO DA TORRE ================\n");
     ExibirBarra("Altura", TorreAlt);
     ExibirBarra("Estrutura", TorreEst);
@@ -30,6 +31,7 @@ void MenuTorre(int* TorreAlt, int* TorreEst, int* TorreOrn) {
 // Função do Menu Coleta de Recursos
 void MenuRecursos(int* RecMad, int* RecPed, int* RecCri, int* TempoDias) {
     char EscolhaRecursos[10];
+    system("clear");
     printf("\n================ RECURSOS ATUAIS ================\n");
     printf("Madeira:  %i\n", *RecMad);
     printf("Pedras:   %i\n", *RecPed);
@@ -91,7 +93,7 @@ void MenuConstrucao(int* TorreAlt, int* TorreEst, int* TorreOrn, int* RecMad, in
     printf("[S]imples - 5 Madeira & 1 Pedra & 5 Dias  | +5 Altura & + 1 Estabilidade \n");
     printf("[E]strutural - 5 Pedras & 10 Madeiras & 10 Dias  | +2 Altura & + 5 Estabilidade \n");
     printf("[D]ecorada - 10 Madeira & 5 Cristais & 10 Dias  | +5 Altura & + 5 Ornamentos & - 4 Estabilidade \n");
-    printf("Es[C]ulpida - 20 Madeiras& 12 Pedras e 10 Cristais & 15 Dias  | +5 Altura & + 4 Estabilidade & + 3 Ornamentos  \n");
+    printf("Es[C]ulpida - 20 Madeiras & 12 Pedras e 10 Cristais & 15 Dias  | +5 Altura & + 4 Estabilidade & + 3 Ornamentos  \n");
     printf("Ou aperte outra tecla para voltar ao menu anterior!\n");
     printf("=================================================\n\n");
     
@@ -161,7 +163,7 @@ void MenuPrincipal(int TorreAlt, int TorreEst, int TorreOrn,
                    int RecMad, int RecPed, int RecCri, int TempoDias) {
     char Escolha[10];
 
-    while (TempoDias>0) {
+    while (TempoDias>0 && TorreEst >= (TorreAlt/2)) {
         printf("================================================\n\n");
         printf("Dias Remanescentes: %i \n\n", TempoDias);
         printf("Escolha uma das Ações abaixo:\n\n");
@@ -192,6 +194,58 @@ void MenuPrincipal(int TorreAlt, int TorreEst, int TorreOrn,
             printf("Por favor escolha entre as opções T, R ou C!\n\n");
         }
     }
+    
+    if(TorreEst < (TorreAlt/2)){ //Fim de jogo - Perda via Desabamento
+        system("clear");
+        printf("================================================\n\n");
+        printf("FIM DE JOGO! - Final 1/4!\n\n", TempoDias);
+        printf("\n\n");
+        printf("Devido a falta de establidade a torre desabou!\n");
+        printf("\n\n");
+        printf("As terras se tornaram secas e inférteis! Doenças assolam toda a região!\n");
+        printf("\n\n");
+        printf("Sua aldeia desbandou antes do ano novo, Tente novamente...\n");
+        printf("================================================\n\n");
+    } else if(TempoDias <= 0 && TorreAlt < 100){ // Fim de Jogo - Perda devido a altura.
+        system("clear");
+        printf("================================================\n\n");
+        printf("FIM DE JOGO! - Final 2/4!\n\n", TempoDias);
+        printf("\n\n");
+        printf("A torre não estava pronta na chegada do ano novo!\n");
+        printf("\n\n");
+        printf("Sem a benção da divindade, sua civilização sofreu secas e fome!\n");
+        printf("\n\n");
+        printf("Apenas ruinas restaram, Tente novamente...\n");
+        printf("================================================\n\n");
+    } else if(TempoDias <= 0 && TorreAlt >= 100 && TorreOrn <= 65){ // Fim de jogo - Vitória parcial
+        system("clear");
+        printf("================================================\n\n");
+        printf("Fim de Jogo! Final 3/4!\n\n", TempoDias);
+        printf("\n\n");
+        printf("Na chegada do ano novo, a divindade aparece no brilho lunar.\n");
+        printf("\n\n");
+        printf("Ela parece satisfeita com a torre!\n");
+        printf("\n\n");
+        printf("No próximo ano, suas colheitas são fartas, e seus filhos crescem saudáveis.\n");
+        printf("\n\n");
+        printf("O futuro parece próspero para a sua aldeia!\n");
+        printf("\n\n");
+        printf("================================================\n\n");
+    } else if(TempoDias <= 0 && TorreAlt >= 100 && TorreOrn >= 66){
+        system("clear");
+        printf("================================================\n\n");
+        printf("Fim de Jogo! Final 3/4!\n\n", TempoDias);
+        printf("\n\n");
+        printf("Na chegada do ano novo, a divindade aparece no brilho lunar.\n");
+        printf("\n\n");
+        printf("Ela se mostra impressionada com a sua glamurosa torre!\n");
+        printf("\n\n");
+        printf("Os cristais que adornam a torre refletem o brilho lunar por toda a região, distribuindo a benção divina.\n");
+        printf("\n\n");
+        printf("Durante os próximos anos, a aldeia prospera, se tornando o centro de uma grande civilização!\n");
+        printf("\n\n");
+        printf("================================================\n\n");
+    }
 }
 
 int main() {
@@ -202,9 +256,21 @@ int main() {
     int* RecPed = 0;
     int* RecCri = 0;
     int* TempoDias = 365;
-
+    system("clear");
     printf("Inicializando STONE...\n\n");
-    printf("Variáveis resetadas para valores iniciais\n\n");
+    printf("...Variáveis resetadas para valores iniciais\n\n");
+    
+    printf("================================================\n");
+    printf("STONE\n");
+    printf("Você é responsável pela organização de um pequenho vilarejo.\n");
+    printf("Apesar de pacato e pacífico, os aldeões estão preocupados, devido as últimas colheitas.\n");
+    printf("Na virada do ano novo, um clérigo entra em sua casa informando-lhe sobre uma visão que teve.\n");
+    printf("A deusa da lua requer que um enorme monumento seja criado em seu nome, e se o fizer ela abençoará toda a vila.\n");
+    printf("Sem pestanejar, você concorda e começa os planos para erguer a torre que irá salvar o seu vilarejo.\n");
+    printf("================================================\n\n");
+    
+    printf("Pressione ENTER para iniciar...\n");
+    getchar();
 
     MenuPrincipal(TorreAlt, TorreEst, TorreOrn, RecMad, RecPed, RecCri, TempoDias);
 
