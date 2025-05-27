@@ -106,6 +106,11 @@ void MenuConstrucao(int* TorreAlt, int* TorreEst, int* TorreOrn, int* RecMad, in
     }
 
     if (strcmp(EscolhaRecursos, "S") == 0) {
+         if(RecMad < 5 || RecPed < 1){
+        printf("=================================================\n\n");
+        printf("Recursos insuficientes, Ação cancelada!\n");
+        printf("=================================================\n\n");
+        } else {
         printf("=================================================\n\n");
         printf("Os aldeões passam 5 dias Construindo a seção Simples!\n");
         printf("A torre ganhou +5 Altura & + 1 Estabilidade!\n");
@@ -115,9 +120,15 @@ void MenuConstrucao(int* TorreAlt, int* TorreEst, int* TorreOrn, int* RecMad, in
         *TempoDias -= 5;
         *TorreAlt += 5;
         *TorreEst += 1;
+        }
 
     } else if (strcmp(EscolhaRecursos, "E") == 0) {
-         printf("=================================================\n\n");
+        if(RecMad < 10 || RecPed < 5){
+        printf("=================================================\n\n");
+        printf("Recursos insuficientes, Ação cancelada!\n");
+        printf("=================================================\n\n");
+        } else {
+        printf("=================================================\n\n");
         printf("Os aldeões passam 10 dias Construindo a seção Estrutural!\n");
         printf("A torre ganhou +2 Altura & + 5 Estabilidade!\n");
         printf("=================================================\n\n");
@@ -126,8 +137,15 @@ void MenuConstrucao(int* TorreAlt, int* TorreEst, int* TorreOrn, int* RecMad, in
         *TempoDias -= 10;
         *TorreAlt += 2;
         *TorreEst += 5;
+        }
 
     } else if (strcmp(EscolhaRecursos, "D") == 0) {
+        
+        if(RecMad < 10 || RecCri < 5){
+        printf("=================================================\n\n");
+        printf("Recursos insuficientes, Ação cancelada!\n");
+        printf("=================================================\n\n");
+        } else {
         printf("=================================================\n\n");
         printf("Os aldeões passam 10 dias Construindo a seção Decorada!\n");
         printf("A torre ganhou +5 Altura & + 5 Ornamentos e perde - 4 Estabilidade!\n");
@@ -138,9 +156,15 @@ void MenuConstrucao(int* TorreAlt, int* TorreEst, int* TorreOrn, int* RecMad, in
         *TorreAlt += 5;
         *TorreEst -= 4;
         *TorreOrn += 5;
+        }
 
         
     } else if (strcmp(EscolhaRecursos, "C") == 0) {
+        if(RecMad < 20 || RecPed < 12 || RecCri < 10){
+        printf("=================================================\n\n");
+        printf("Recursos insuficientes, Ação cancelada!\n");
+        printf("=================================================\n\n");
+        } else {
         printf("=================================================\n\n");
         printf("Os aldeões passam 15 dias Construindo a seção Esculpida!\n");
         printf("A torre ganhou +5 Altura & + 4 Estabilidade & + 3 Ornamentos!\n");
@@ -152,7 +176,7 @@ void MenuConstrucao(int* TorreAlt, int* TorreEst, int* TorreOrn, int* RecMad, in
         *TorreAlt += 5;
         *TorreEst += 4;
         *TorreOrn += 3;
-
+        }
     } else {
         printf("Você escolheu voltar!\n\n");
     }
@@ -217,7 +241,7 @@ void MenuPrincipal(int TorreAlt, int TorreEst, int TorreOrn,
         printf("\n\n");
         printf("Apenas ruinas restaram, Tente novamente...\n");
         printf("================================================\n\n");
-    } else if(TempoDias <= 0 && TorreAlt >= 100 && TorreOrn <= 65){ // Fim de jogo - Vitória parcial
+    } else if(TempoDias <= 0 && TorreAlt >= 100 && TorreOrn <= 32){ // Fim de jogo - Vitória parcial
         system("clear");
         printf("================================================\n\n");
         printf("Fim de Jogo! Final 3/4!\n\n", TempoDias);
@@ -231,7 +255,7 @@ void MenuPrincipal(int TorreAlt, int TorreEst, int TorreOrn,
         printf("O futuro parece próspero para a sua aldeia!\n");
         printf("\n\n");
         printf("================================================\n\n");
-    } else if(TempoDias <= 0 && TorreAlt >= 100 && TorreOrn >= 66){
+    } else if(TempoDias <= 0 && TorreAlt >= 100 && TorreOrn >= 33){
         system("clear");
         printf("================================================\n\n");
         printf("Fim de Jogo! Final 3/4!\n\n", TempoDias);
