@@ -1,5 +1,7 @@
-Projeto Integrador Referente aos Alunos Ivan e Luana.
+Projeto Integrador I - Análise de Sistemas 
 
-Jogo Escholido: Stone Age por Bernd Brunnhofer
+Referente aos Alunos Ivan, Luana e Marcelo.
+
+Jogo Escolhido: Stone Age por Bernd Brunnhofer
 
 Linguagem do projeto: C
